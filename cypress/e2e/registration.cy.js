@@ -36,14 +36,26 @@ describe('Student Registration page', () => {
 
     cy.contains('Thanks for submitting the form').should('be.visible');
 
-    cy.contains('Nazar Kaminskyi').should('exist');
-    cy.contains('nazar@test.com').should('exist');
-    cy.contains('Male').should('exist');
-    cy.contains('1234567890').should('exist');
-    cy.contains('15 April,1995').should('exist');
-    cy.contains('Maths').should('exist');
-    cy.contains('Sports').should('exist');
-    cy.contains('Ternopil, Ukraine').should('exist');
-    cy.contains('NCR Delhi').should('exist');
+    cy.get('.modal-body').within(() => {
+      cy.contains('td', 'Student Name')
+        .next()
+        .should('have.text', 'Nazar Kaminskyi');
+      cy.contains('td', 'Student Email')
+        .next()
+        .should('have.text', 'nazar@test.com');
+      cy.contains('td', 'Gender').next().should('have.text', 'Male');
+      cy.contains('td', 'Mobile').next().should('have.text', '1234567890');
+      cy.contains('td', 'Date of Birth')
+        .next()
+        .should('have.text', '15 April,1995');
+      cy.contains('td', 'Subjects').next().should('have.text', 'Maths');
+      cy.contains('td', 'Hobbies').next().should('have.text', 'Sports');
+      cy.contains('td', 'Address')
+        .next()
+        .should('have.text', 'Ternopil, Ukraine');
+      cy.contains('td', 'State and City')
+        .next()
+        .should('have.text', 'NCR Delhi');
+    });
   });
 });
